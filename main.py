@@ -17,14 +17,13 @@ for (dirpath, dirnames, filenames) in walk("pictures"):
         # for (top, right, bottom, left) in face_locations:
         #     im = im[top:bottom, left: right]
         #     break
-        cv2.imshow("image", im)
-        cv2.waitKey(0)
+        # cv2.imshow("image", im)
+        # cv2.waitKey(0)
         previously_added_faces.append(face_recognition.face_encodings(im)[0])
         s_1 = str.split(filename)
         s_2 = str.split(s_1[2], '.')
         previously_added_names.append((s_1[0], s_1[1], s_2[0]))
     break
-
 
 
 time_ = time.time()
@@ -33,10 +32,14 @@ while True:
     ret, frame = cap.read()
     if time.time() - time_ > 2:
         time_ = time.time()
+
+    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+    rgb_small_frame = small_frame[:, :, ::-1]
+
     # face_locations = face_recognition.face_locations(frame)
     # print(face_locations)
     # for (top, right, bottom, left) in face_locations:
     #     im = frame[top:bottom, left: right]
-    im_encode = face_recognition.face_encodings(frame)[0]
+    im_encode = face_recognition.face_encodings(rgb_small_frame)[0]
     result = face_recognition.compare_faces(previously_added_faces, im_encode)
     print(result)

@@ -42,10 +42,10 @@ def check_glasses(path="normal-img.png"):
     edges_center = edges.T[(int(len(edges.T) / 2))]
 
     if 255 in edges_center:
-        print("has glasses")
+        # print("has glasses")
         return True
-    print("does not have glasses")
+    # print("does not have glasses")
     return False
 
 
-check_glasses("glasses-img.png")
+# check_glasses("glasses-img.png")
