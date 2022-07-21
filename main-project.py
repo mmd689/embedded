@@ -50,14 +50,19 @@ while True:
     img_has_glasses = check_glasses("current-frame.png")
     print("Does {} has glasses? {}".format(person_id, str(img_has_glasses)))
 
-    if has_glasses[persons[person_id - 1]] and not img_has_glasses:
-        if not no_glasses_alert:
-            # alert the person to put on glasses
-            no_glasses_alert = True
+    # Todo: BUG -> no glasses : person_id is str (None)
+
+    if person_id == "unknown":
+        if has_glasses[persons[person_id - 1]] and not img_has_glasses:
+            if not no_glasses_alert:
+                # alert the person to put on glasses
+                no_glasses_alert = True
+        else:
+            if no_glasses_alert:
+                # turn off the alert
+                pass
+            no_glasses_alert = False
     else:
-        if no_glasses_alert:
-            # turn off the alert
-            pass
         no_glasses_alert = False
 
     if person_id == "unknown":
