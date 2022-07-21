@@ -46,6 +46,3 @@ def check_glasses(path="normal-img.png"):
         return True
     # print("does not have glasses")
     return False
-
-
-# check_glasses("glasses-img.png")
